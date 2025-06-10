@@ -30,3 +30,9 @@
 git clone https://github.com/younoulegeek/murmur-agent.git
 cd murmur-agent
 python main.py
+```
+
+## 🖱️ Simple GUI
+
+For a minimal graphical interface, run `python gui.py`.
+It provides Start/Stop buttons to control MurMur.
