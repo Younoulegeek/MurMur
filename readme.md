@@ -10,6 +10,7 @@
 
 - 🔍 Real-time detection of system events
 - 🔄 Auto-fix for common issues (Wi-Fi, frozen Explorer, temp files)
+- 🚀 Wi-Fi reconnect uses `netsh` to auto-select your saved profile
 - 🧠 Pattern-based logic engine
 - ⚙️ Modular design — plug in your own monitors and fixes
 - 🤫 Runs silently in the background
@@ -30,3 +31,10 @@
 git clone https://github.com/younoulegeek/murmur-agent.git
 cd murmur-agent
 python main.py
+```
+
+## 🖱️ Dashboard GUI
+
+Launch the graphical interface with `python gui.py`.
+It offers tabs for status, history and settings as well as
+buttons to force a scan or display recent events.

@@ -194,22 +194,45 @@ class FixEngine:
     
     @staticmethod
     def restart_wifi():
-        """Redémarre la connexion Wi-Fi"""
+        """Redémarre la connexion Wi-Fi (Windows uniquement)"""
         import subprocess
         import platform
-        
+        import re
+
+        if platform.system() != "Windows":
+            print("Cette fonction n'est disponible que sous Windows")
+            return
+
         try:
-            if platform.system() == "Windows":
-                # Windows: redémarre l'adaptateur réseau
-                subprocess.run(["netsh", "wlan", "disconnect"], check=True)
-                time.sleep(2)
-                subprocess.run(["netsh", "wlan", "connect", "name=*"], check=True)
-            elif platform.system() == "Darwin":  # macOS
-                subprocess.run(["networksetup", "-setairportpower", "en0", "off"], check=True)
-                time.sleep(2)
-                subprocess.run(["networksetup", "-setairportpower", "en0", "on"], check=True)
+            # Récupération des profils Wi-Fi enregistrés
+            profiles_output = subprocess.check_output(
+                ["netsh", "wlan", "show", "profiles"], encoding="utf-8", errors="ignore"
+            )
+
+            matches = re.findall(
+                r"(?:Profil Tous les utilisateurs|All User Profile)\s*:\s*(.*)",
+                profiles_output,
+            )
+
+            if not matches:
+                print("❌ Aucun profil Wi-Fi trouvé")
+                return
+
+            profile_name = matches[0].strip()
+
+            subprocess.run(["netsh", "wlan", "disconnect"], check=True)
+            time.sleep(2)
+            print(f"🔄 Tentative de reconnexion à : {profile_name}")
+            subprocess.run([
+                "netsh",
+                "wlan",
+                "connect",
+                f"name={profile_name}",
+            ], check=True)
+            print("✅ Wi-Fi reconnecté avec succès")
+
         except subprocess.CalledProcessError as e:
-            print(f"Erreur redémarrage Wi-Fi: {e}")
+            print(f"❌ Erreur de reconnexion : {e}")
     
     @staticmethod
     def restart_explorer():
