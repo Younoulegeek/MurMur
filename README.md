@@ -1,13 +1,15 @@
 # MurMur
+
 MurMur is a silent local agent that detects and auto-fixes common technical issues like Wi-Fi drops or frozen processes. Modular, real-time, and fully automated — it works quietly in the background to keep your system smooth without interruptions.
+
+The Wi-Fi repair logic uses `netsh` to detect your saved profile and reconnect automatically on Windows.
 
 ## GUI Front-end
 
-A basic Tkinter interface is provided in `gui.py`.
-Run it with:
+An enhanced Tkinter dashboard is provided in `gui.py`.  
+The window shows MurMur's status, a quick history of events, and buttons to force a scan or view more details.
+
+### Run the app
 
 ```bash
 python gui.py
-```
-
-It will let you start or stop MurMur from a small window.
