@@ -33,8 +33,10 @@ cd murmur-agent
 python main.py
 ```
 
+codex/expliquer-la-base-de-code-aux-débutants
 ## 🖱️ Dashboard GUI
 
 Launch the graphical interface with `python gui.py`.
 It offers tabs for status, history and settings as well as
 buttons to force a scan or display recent events.
+

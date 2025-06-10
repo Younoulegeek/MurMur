@@ -1,3 +1,4 @@
+codex/expliquer-la-base-de-code-aux-débutants
 """Interface graphique Tkinter pour MurMur.
 
 Cette interface offre un tableau de bord minimaliste permettant
